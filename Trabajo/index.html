@@ -5,8 +5,221 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundacion Centro Educativo Mixto de Galapa - Inicio</title>
+    <style>
+        /* Estilos del modal */
+        .modal-overlay {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .modal-overlay.hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9f0 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 4px solid #FFD54F;
+            animation: scaleIn 0.4s ease-out;
+            position: relative;
+        }
+
+        .modal-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #FFD54F;
+            box-shadow: 0 5px 20px rgba(102, 187, 106, 0.3);
+            overflow: hidden;
+        }
+
+        .modal-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-title {
+            color: #66BB6A;
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin: 20px 0 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-subtitle {
+            color: #FFD54F;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .modal-text {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .modal-close-btn {
+            background: linear-gradient(135deg, #66BB6A, #81C784);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 187, 106, 0.3);
+            transition: all 0.3s;
+        }
+
+        .modal-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 187, 106, 0.4);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FFD54F;
+            animation: confettiFall 3s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti:nth-child(2) {
+            left: 20%;
+            animation-delay: 0.2s;
+            background: #66BB6A;
+        }
+
+        .confetti:nth-child(3) {
+            left: 40%;
+            animation-delay: 0.4s;
+            background: #81C784;
+        }
+
+        .confetti:nth-child(4) {
+            left: 60%;
+            animation-delay: 0.6s;
+            background: #FFD54F;
+        }
+
+        .confetti:nth-child(5) {
+            left: 80%;
+            animation-delay: 0.8s;
+            background: #66BB6A;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            .modal-logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .modal-title {
+                font-size: 1.7rem;
+            }
+
+            .modal-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .modal-text {
+                font-size: 1rem;
+            }
+
+            .modal-close-btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Modal de Aniversario -->
+    <div class="modal-overlay" id="anniversaryModal">
+        <div class="modal-content">
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            
+            <div class="modal-logo">
+                <img src="Imagenes/Logo.jpg" alt="Logo CEMGA">
+            </div>
+            
+            <h2 class="modal-title">¡Estamos de Aniversario! 🎉</h2>
+            <p class="modal-subtitle">40 años formando líderes</p>
+            <p class="modal-text">
+                Celebramos con orgullo 40 años de excelencia educativa en Galapa. 
+                Desde 1985 hasta hoy, construyendo el futuro de nuestra comunidad.
+            </p>
+            
+            <button class="modal-close-btn" onclick="closeModal()">Celebrar con nosotros</button>
+        </div>
+    </div>
+
     <header>
         <div class="header-content">
             <div class="logo-section">
@@ -23,7 +236,7 @@
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
                     <li><a href="#noticias">Noticias</a></li>
-                    <li><a href="#niveles">Niveles</a></li>
+                    <li><a href="#niveles">Niveles Academicos</a></li>
                 </ul>
             </nav>
         </div>
@@ -95,16 +308,19 @@
                         <img src="Imagenes/Escudo.jpg" alt="Escudo">
                     </div>
                     <h3>Escudo</h3>
-                    <p>Representa nuestros valores: el libro simboliza el conocimiento, la antorcha la luz del saber, 
-                    y el verde la esperanza y crecimiento.</p>
+                    <p>
+ANTORCHA ENCENDIDA: Representa el triunfo obtenido a través de la práctica del conocimiento guiada por la luz de la Sabiduría.
+LAURELES: Merito obtenido por la institución cada vez que entrega a Galapa y al país ciudadanos de bien.</p>
                 </div>
                 <div class="symbol-card">
                     <div class="symbol-icon">
                         <img src="Imagenes/Bandera.jpg" alt="">
                     </div>
                     <h3>Bandera</h3>
-                    <p>Verde y blanco: el verde simboliza la esperanza y la vida; el blanco, la pureza y la paz. 
-                    En el centro, nuestro escudo institucional.</p>
+                    <p>AMARILLO: Representa la riqueza de la Sabiduría adquirida por la dedicación, el estudio y el desarrollo y fortalecimiento de las potencialidades humanas.
+BLANCO: Representa al ciudadano comprometido con acciones justas para el bienestar propio y para el bien común.
+TRIANGULO VERDE: Representa la triada Inseparable Familia, Escuela, Comunidad.
+elementos indispensables en la formación integral del ser humano.</p>
                 </div>
                 <div class="symbol-card">
                     <div class="symbol-icon">🎵</div>
@@ -149,7 +365,7 @@
                         <p> El nombre dreamers significa soñadores además representa a una generación que no solo sueña, sino que lucha por hacer sus sueños realidad. Simboliza esperanza, perseverancia y el deseo de dejar una huella. Cada uno de nosotros ha crecido, aprendiendo y superando desafíos, demostrando que, con esfuerzo y pasión, cualquier meta es alcanzable.</p>
                         <div class="promotion-details">
                             <div class="detail-item">
-                                <span class="detail-icon">👔</span>
+                                <span class="detail-icon"></span>
                                 <p><strong>Uniforme:</strong> Camisa tipo polo de color negro con una franja blanca y azul, pantalón de vestir negro, zapatos blancos deportivos.
                                 un uniforme elegante, comodo y casual para cualquier tipo de evento.</p>
                             </div>
@@ -178,6 +394,29 @@
                             </a>
                             <p><strong>Importante:</strong> Los resultados del icfes ya estan disponibles en la plataforma oficial del ICFES.</p>
                             <p>Consulta los resultados de este año dandole click a la foto</p> 
+                        </div>
+
+                        <div class="news-card">
+                            <h4>Lideres</h4>
+                            <p><strong>Fecha:</strong> 21 de Octubre de 2025</p>
+                            <div class="news-card-image">
+                                <img src="Imagenes/Foto2.jpg" alt="Descripción">
+                            </div>
+                            <p><strong>Impresionante:</strong> Felicitamos a nuestros estudiantes Katerine Berdugo y Jorge Cera ; así como a nuestros egresados 2024</p>
+                                <p>Isaac Robles y Mariana Fonseca; quienes fueron elegidos el pasado domingo 19 de octubre como consejeros de juventud y quienes serán</p>
+                                <p>la voz de nuestros jóvenes de Galapa. CEMGA sigue impulsando líderes activos al servicio de la comunidad.</p>
+                        </div>
+
+                        
+                        <div class="news-card">
+                            <h4>Representantes</h4>
+                            <p><strong>Fecha:</strong> 21 de Octubre de 2025</p>
+                            <div class="news-card-image">
+                                <img src="Imagenes/Foto6.jpg" alt="Descripción">
+                            </div>
+                            <p><strong>Impresionante:</strong>Felicitaciones a nuestros estudiantes Jhony Ramírez, Robbie Matías Sandoval y Geraldine Trezza</p>
+                                <p>quienes por su gran desempeño fueron escogidos para formar parte de la selección de Baloncesto que representará a Galapa</p>
+                                <p>en el torneo "Encesta Atlántico"</p>
                         </div>
 
                         <div class="news-card">
@@ -253,6 +492,23 @@
     </footer>
 
     <script>
+        // Función para cerrar el modal
+        function closeModal() {
+            const modal = document.getElementById('anniversaryModal');
+            modal.style.animation = 'fadeOut 0.3s ease-in-out';
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Cerrar modal al hacer clic fuera de él
+        document.getElementById('anniversaryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Código del carrusel
         let currentSlide = 0;
         const track = document.getElementById('carouselTrack');
         const slides = document.querySelectorAll('.news-card');
@@ -316,3 +572,5 @@
         createIndicators();
         // startAutoPlay(); // Descomenta esta línea si quieres que se mueva automáticamente
     </script>
+</body>
+</html>
