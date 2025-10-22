@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="StylesRestultado.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados ICFES 2025 - CEMGA</title>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h2>📊 Resultados ICFES 2025</h2>
+            <a href="index.html" class="back-button">← Volver al Inicio</a>
+        </div>
+    </header>
+
+    <div class="hero-results">
+        <h1>Resultados Pruebas Saber 11°</h1>
+        <p>Felicitaciones a todos nuestros estudiantes por su excelente desempeño</p>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>¡Orgullosos de Nuestros Estudiantes!</h2>
+            <p>Los estudiantes de grado 11° de la Fundacion Centro Educativo Mixto de Galapa han demostrado 
+            su compromiso y dedicación alcanzando destacados resultados en las Pruebas Saber 11° 2025. 
+            A continuación, presentamos algunos de los resultados más sobresalientes.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Tarjeta 1 -->
+            <div class="result-card" onclick="openModal('Imagenes/Resultado1.jpg')">
+                <div class="result-image">
+                    <img src="Imagenes/Resultado1.jpg" alt="Resultado Estudiante 1" onerror="this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:#999\'>📄<br>Imagen no disponible<br>Agrega: resultado1.jpg</div>'">
+                </div>
+                <div class="result-info">
+                    <p class="student-name">Estudiantes Destacados</p>
+                    <div class="score-badge">⭐ Alto Desempeño</div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="result-card" onclick="openModal('Imagenes/Resultado2.jpg')">
+                <div class="result-image">
+                    <img src="Imagenes/Resultado2.jpg" alt="Resultado Estudiante 2" onerror="this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:#999\'>📄<br>Imagen no disponible<br>Agrega: resultado2.jpg</div>'">
+                </div>
+                <div class="result-info">
+                    <p class="student-name">Estudiantes Destacados</p>
+                    <div class="score-badge">⭐ Alto Desempeño</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ampliar imágenes -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centro Educativo Mixto de Galapa</p>
+        <p>Galapa, Atlántico</p>
+    </footer>
+
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

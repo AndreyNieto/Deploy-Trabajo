@@ -47,6 +47,13 @@ header {
     color: #66BB6A;
     font-size: 24px;
     border: 3px solid #FFD54F;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .school-name h1 {
@@ -110,7 +117,7 @@ section {
 }
 
 h2 {
-    color: #ffffff;
+    color: #FFFFFF  ;
     font-size: 2.2rem;
     margin-bottom: 30px;
     text-align: center;
@@ -199,6 +206,18 @@ h3 {
 .symbol-icon {
     font-size: 60px;
     margin-bottom: 15px;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.symbol-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .uniform-grid {
@@ -224,7 +243,7 @@ h3 {
 
 .uniform-image {
     width: 100%;
-    height: 400px;
+    height: 410px;
     background: linear-gradient(135deg, #66BB6A, #81C784);
     display: flex;
     align-items: center;
@@ -286,7 +305,7 @@ h3 {
 
 .promotion-image {
     width: 100%;
-    height: 600px;
+    height: 650px;
     background: linear-gradient(135deg, #66BB6A 0%, #81C784 30%, #A5D6A7 60%, #C8E6C9 100%);
     display: flex;
     align-items: center;
@@ -428,12 +447,12 @@ h3 {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 25px;
 }
 
 .news-card-image {
     width: 100%;
-    height: 600px;
+    height: 350px;
     background: linear-gradient(135deg, #66BB6A, #81C784);
     display: flex;
     align-items: center;
@@ -442,42 +461,42 @@ h3 {
     font-size: 80px;
     overflow: hidden;
     border-radius: 10px;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 .news-card-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .news-card-content {
-    padding: 30px;
+    padding: 20px;
 }
 
 .news-card.text-only {
-    padding: 40px;
+    padding: 30px;
 }
 
 .news-card h3 {
     color: #66BB6A;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
     margin-top: 0;
 }
 
 .news-card h4 {
     color: #66BB6A;
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
     margin-top: 0;
 }
 
 .news-card p {
     color: #555;
-    line-height: 1.8;
-    font-size: 1.05rem;
-    margin-bottom: 10px;
+    line-height: 1.7;
+    font-size: 1rem;
+    margin-bottom: 8px;
 }
 
 .news-card p:last-child {
@@ -771,53 +790,67 @@ footer {
     }
     
     .news-carousel {
-        padding: 0 45px;
-        margin: 30px auto;
+        padding: 0 40px;
+        margin: 20px auto;
     }
     
     .carousel-button {
-        width: 35px;
-        height: 35px;
-        font-size: 18px;
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
     }
 
     .carousel-button.prev {
-        left: 5px;
+        left: 3px;
     }
 
     .carousel-button.next {
-        right: 5px;
+        right: 3px;
     }
 
     .news-card {
-        padding: 20px;
+        padding: 12px;
     }
 
     .news-card.text-only {
-        padding: 20px;
+        padding: 15px;
     }
 
     .news-card-content {
-        padding: 20px;
+        padding: 10px;
     }
 
     .news-card-image {
-        height: 250px;
-        font-size: 50px;
-        margin: 15px 0;
+        height: 150px;
+        font-size: 40px;
+        margin: 8px 0;
+        border-radius: 6px;
     }
 
     .news-card h3 {
-        font-size: 1.4rem;
+        font-size: 1.1rem;
+        margin-bottom: 8px;
     }
 
     .news-card h4 {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        margin-bottom: 8px;
     }
 
     .news-card p {
-        font-size: 0.95rem;
-        line-height: 1.6;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 6px;
+    }
+
+    .carousel-indicators {
+        margin-top: 12px;
+        gap: 8px;
+    }
+
+    .indicator {
+        width: 8px;
+        height: 8px;
     }
 
     .levels-grid {
