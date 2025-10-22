@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="stylesheet" href="Style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades Escolares - CEMGA</title>
+    <style>
+        /* Estilos adicionales para la página de actividades */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #66BB6A;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #81C784;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #66BB6A 0%, #81C784 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            animation: fadeInDown 0.8s;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid #66BB6A;
+            color: #66BB6A;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #66BB6A;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 187, 106, 0.3);
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid #A5D6A7;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(102, 187, 106, 0.2);
+        }
+
+        .activity-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #66BB6A, #81C784);
+        }
+
+        .activity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .activity-card:hover .activity-image img {
+            transform: scale(1.1);
+        }
+
+        .activity-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #FFD54F;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .activity-content {
+            padding: 25px;
+        }
+
+        .activity-date {
+            color: #81C784;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .activity-title {
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .activity-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .activity-participants {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid #E8F5E9;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .participants-icon {
+            background: linear-gradient(135deg, #66BB6A, #81C784);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #66BB6A, #81C784);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 40px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 187, 106, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 187, 106, 0.4);
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #66BB6A;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .activity-image {
+                height: 200px;
+            }
+
+            .filter-buttons {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="Imagenes/Logo.jpg" alt="Logo CEMGA">
+                </div>
+                <div class="school-name">
+                    <h1>Fundacion Centro Educativo Mixto de Galapa</h1>
+                    <p>Formando líderes del mañana</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.html#nosotros">Nosotros</a></li>
+                    <li><a href="index.html#noticias">Noticias</a></li>
+                    <li><a href="index.html#niveles">Niveles Académicos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Inicio</a> / <span>Actividades Escolares</span>
+    </div>
+
+    <div class="page-header">
+        <h1>🎉 Actividades Escolares 2025</h1>
+        <p>Celebrando nuestros logros y experiencias educativas</p>
+    </div>
+
+    <div class="container">
+        <div class="stats-section">
+            <h2 style="color: #66BB6A; margin-bottom: 10px;">Nuestros Logros en Números</h2>
+            <p style="color: #666; margin-bottom: 20px;">Un año lleno de éxitos y aprendizajes</p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Actividades Realizadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Competencias Ganadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Estudiantes Participantes</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40</div>
+                    <div class="stat-label">Años de Historia</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin-bottom: 30px;">Explora Nuestras Actividades</h2>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterActivities('todas')">Todas</button>
+            <button class="filter-btn" onclick="filterActivities('deportes')">Deportes</button>
+            <button class="filter-btn" onclick="filterActivities('cultura')">Cultura</button>
+            <button class="filter-btn" onclick="filterActivities('academico')">Académico</button>
+            <button class="filter-btn" onclick="filterActivities('civico')">Cívico</button>
+        </div>
+
+        <div class="activities-grid" id="activitiesGrid">
+            <!-- Actividad 1 -->
+            <div class="activity-card" data-category="civico">
+                <div class="activity-image">
+                    <img src="Imagenes/Foto2.jpg" alt="Consejeros de Juventud">
+                    <span class="activity-badge">Liderazgo</span>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-date">📅 21 de Octubre, 2025</div>
+                    <h3 class="activity-title">Elección de Consejeros de Juventud</h3>
+                    <p class="activity-description">
+                        Nuestros estudiantes Katerine Berdugo y Jorge Cera, junto a los egresados Isaac Robles y Mariana
+                        Fonseca,
+                        fueron elegidos como consejeros de juventud, representando la voz de los jóvenes de Galapa.
+                    </p>
+                    <div class="activity-participants">
+                        <div class="participants-icon">👥</div>
+                        <span>4 Representantes CEMGA</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad 2 -->
+            <div class="activity-card" data-category="deportes">
+                <div class="activity-image">
+                    <img src="Imagenes/Foto6.jpg" alt="Selección Baloncesto">
+                    <span class="activity-badge">Deportes</span>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-date">📅 21 de Octubre, 2025</div>
+                    <h3 class="activity-title">Selección Municipal de Baloncesto</h3>
+                    <p class="activity-description">
+                        Jhony Ramírez, Robbie Matías Sandoval y Geraldine Trezza fueron seleccionados para representar a
+                        Galapa
+                        en el torneo "Encesta Atlántico" gracias a su destacado desempeño deportivo.
+                    </p>
+                    <div class="activity-participants">
+                        <div class="participants-icon">🏀</div>
+                        <span>3 Atletas Seleccionados</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad 3 -->
+            <div class="activity-card" data-category="cultura">
+                <div class="activity-image">
+                    <img src="Imagenes/Foto3.jpg" alt="Concurso de Poesía">
+                    <span class="activity-badge">1er y 2do Lugar</span>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-date">📅 16 de Septiembre, 2025</div>
+                    <h3 class="activity-title">Concurso de Declamación de Poesía</h3>
+                    <p class="activity-description">
+                        Jean Pierre Olmos y Abigail Fontalvo conquistaron el primer y segundo lugar en el concurso
+                        interescolar organizado en la Institución Educativa Minuto de Dios.
+                    </p>
+                    <div class="activity-participants">
+                        <div class="participants-icon">🎭</div>
+                        <span>2 Ganadores</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad 4 -->
+            <div class="activity-card" data-category="deportes">
+                <div class="activity-image">
+                    <img src="Imagenes/Foto4.jpg" alt="Subcampeonas Baloncesto">
+                    <span class="activity-badge">Subcampeonas</span>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-date">📅 14 de Agosto, 2025</div>
+                    <h3 class="activity-title">Juegos Intercolegiados Departamentales</h3>
+                    <p class="activity-description">
+                        Nuestro equipo femenino de baloncesto categoría pre-juvenil alcanzó el segundo lugar en los
+                        juegos intercolegiados departamentales, demostrando dedicación y talento.
+                    </p>
+                    <div class="activity-participants">
+                        <div class="participants-icon">🏆</div>
+                        <span>Equipo Pre-Juvenil Femenino</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad 5 -->
+
+            <div class="activity-card" data-category="civico">
+                <div class="activity-image">
+                    <img src="Imagenes/Foto5.jpg" alt="Un día en el Consejo">
+                    <span class="activity-badge">Participación</span>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-date">📅 14 de Agosto, 2025</div>
+                    <h3 class="activity-title">Un Día en el Consejo Municipal</h3>
+                    <p class="activity-description">
+                        Nicolle Sofía Tejera Padilla y Luis José Peña Devenish participaron en la jornada
+                        "Un día en el Consejo", celebrando el día internacional de los niños con participación ciudadana
+                        activa.
+                    </p>
+                    <div class="activity-participants">
+                        <div class="participants-icon">🏛️</div>
+                        <span>2 Representantes</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Actividad 6 -->
+            <div class="activity-card" data-category="academico">
+                <a href="resultados.html">
+                    <div class="activity-image">
+                        <img src="https://bogota.gov.co/sites/default/files/styles/1050px/public/field/image/ICFES.jpg"
+                            alt="Pruebas Saber">
+                        <span class="activity-badge">Exámenes</span>
+                    </div>
+                </a>
+                <div class="activity-content">
+                    <div class="activity-date">📅 10 de Septiembre, 2025</div>
+                    <h3 class="activity-title">Pruebas Saber 11 - 2025</h3>
+                    <p class="activity-description">
+                        Nuestros estudiantes de grado 11 presentaron exitosamente las Pruebas Saber 11. Los resultados
+                        ya están disponibles y reflejan el alto nivel académico de nuestra institución.
+                    </p>
+                    <div class="activity-participants">
+                        <div class="participants-icon">📚</div>
+                        <span>Grado 11 - Promoción DREAMERS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad 7 -->
+            <div class="activity-card" data-category="academico">
+                <div class="activity-image">
+                    <img src="Imagenes/Actividad1.jpg" alt="Actividad">
+                    <span class="activity-badge">Academico</span>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-date">📅 10 de Septiembre, 2025</div>
+                    <h3 class="activity-title">Pruebas Saber 11 - 2025</h3>
+                    <p class="activity-description">
+                        Las paradojas de las matemáticas estuvieron presentes desde 9 a 11 grado. Estos son temas de
+                        gran importancia que permiten a los estudiantes comprobar hipótesis matemáticas e introducirse
+                        en el mundo de la epistemología.</p>
+                    <p>
+
+                        Estás paradojas corresponden a:
+
+                    <p>- El triangulo imposible : Paradoja de Rusell</p>
+                    <p>- La escalera Imposible: "La barbería de Sevilla".</p>
+                    <p>- Paradojas "El Cumpleaños"</p>
+                    <p>- "El Hotel Infinito"</p>
+                    <p>- "Paradoja de Aquiles"</p>
+                    <p>- "Paradoja de la Flecha"</p>
+                    </p>
+                    <div class="activity-participants">
+                        <div class="participants-icon">📚</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad 8 -->
+            <div class="activity-card" data-category="civico">
+                <div class="activity-image">
+                    <img src="Imagenes/Actividad3.jpg" alt="Dia del bilinguismo">
+                    <span class="activity-badge">Participación</span>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-date">📅 14 de Agosto, 2025</div>
+                    <h3 class="activity-title">Día del Bilingüismo</h3>
+                    <p class="activity-description">
+                        Nuestros estudiantes del nivel de educación pre escolar y Básica Primaria, ya están en la Feria
+                        del Bilingüismo compartiendo sus hermosas experiencias de aprendizaje.
+                    </p>
+                    <div class="activity-participants">
+                        <div class="participants-icon">🏛️</div>
+                        <span>2 Representantes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad 9 -->
+            <div class="activity-card" data-category="deportes">
+                <div class="activity-image">
+                    <div
+                        style="background: linear-gradient(135deg, #FFD54F, #FFE082); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                        ⚽
+                    </div>
+                    <span class="activity-badge">Fútbol</span>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-date">📅 Mayo, 2025</div>
+                    <h3 class="activity-title">Torneo Interclases de Fútbol</h3>
+                    <p class="activity-description">
+                        Gran participación en nuestro tradicional torneo de fútbol, promoviendo el deporte,
+                        la sana competencia y el trabajo en equipo entre todos los grados.
+                    </p>
+                    <div class="activity-participants">
+                        <div class="participants-icon">⚽</div>
+                        <span>Primaria y Secundaria</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="index.html" class="back-button">← Volver al Inicio</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Centro Educativo Mixto de Galapa</p>
+        <p>Galapa, Atlántico</p>
+    </footer>
+
+    <script>
+        function filterActivities(category) {
+            const cards = document.querySelectorAll('.activity-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Actualizar botones activos
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filtrar tarjetas
+            cards.forEach(card => {
+                if (category === 'todas') {
+                    card.style.display = 'block';
+                } else {
+                    if (card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
